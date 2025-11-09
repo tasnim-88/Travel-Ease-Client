@@ -10,6 +10,7 @@ import AddVehicle from "../Pages/AddVehicle";
 import MyVehicle from "../Pages/MyVehicle";
 import UpdateVehicle from "../Pages/UpdateVehicle";
 import AllVehicles from "../Pages/AllVehicles";
+import ViewDetails from "../Pages/ViewDetails";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,12 @@ const router = createBrowserRouter([
                 path: '/myprofile',
                 element: <PrivateRoute>
                     <MyProfile></MyProfile>
+                </PrivateRoute>
+            },
+            {
+                path: '/viewDetails',
+                element: <PrivateRoute>
+                    <ViewDetails></ViewDetails>
                 </PrivateRoute>
             },
             {

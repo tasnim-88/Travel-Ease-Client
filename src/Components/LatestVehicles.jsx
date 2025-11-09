@@ -18,7 +18,7 @@ const LatestVehicles = () => {
         <div className="p-6">
             <h1 className="text-2xl font-semibold text-white mb-4">Latest Vehicles</h1>
             {allCars.map((car) => (
-                <div className="bg-base-200 glass rounded-2xl p-5 w-56  shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer relative">
+                <div key={car._id} className="bg-base-200 glass rounded-2xl p-5 w-56  shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer relative">
                     <div className="flex flex-col justify-between h-full">
                         <div>
                             <img
