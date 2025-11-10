@@ -8,7 +8,7 @@ const Banner = () => {
             <video src={video} autoPlay muted loop></video>
             <div className='absolute space-y-3'>
                 <h1 className='text-white text-6xl text-center'>Your Journey Starts Here</h1>
-                <p className='text-white text-center text-xl'>Find the perfect vehicle for your next adventure. <br /> Explore our wide selection of cars, trucks, and SUVs.</p>
+                <p className='text-white text-center text-xl'>Find the perfect vehicle for your next adventure <br /> Explore our wide selection of cars, trucks, and SUVs</p>
                 <div className='flex justify-center items-center'>
                     <Link to={'/allVehicles'} className='btn'>Explore All Vehicle</Link>
                 </div>

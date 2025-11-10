@@ -6,6 +6,10 @@ import { RouterProvider } from 'react-router'
 import router from './Routes/Routes.jsx'
 import AuthProvider from './Context/AuthProvider.jsx'
 import { ToastContainer } from 'react-toastify'
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 
 createRoot(document.getElementById('root')).render(
