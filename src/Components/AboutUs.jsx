@@ -41,7 +41,7 @@ const AboutUs=()=> {
                         </h2>
 
                         <p className="text-slate-600 mb-8">
-                            Build a full-stack vehicle booking web application where users can explore, add, update, and manage vehicles available for rent or travel purposes. Authenticated users can list their own vehicles, update trip details, manage bookings, and delete their own listings. This project demonstrates a complete MERN (MongoDB, Express, React, Node.js) stack integrated with Firebase Authentication and modern UI design.
+                            At TravelEase, we believe renting or sharing a vehicle should be effortless, transparent, and secure. Our platform empowers individuals and businesses to explore, list, and manage vehicles for rent or travel with confidence. Whether you're a traveler looking for the perfect ride or a vehicle owner aiming to earn extra income, DriveEase offers a seamless experience powered by modern technology.
                         </p>
 
                         {/* Feature list */}
