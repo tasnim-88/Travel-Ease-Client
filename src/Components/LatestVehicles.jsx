@@ -1,87 +1,135 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-
-// Import Swiper styles
-// import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-// import 'swiper/css/autoplay';
+import React, { useEffect, useState, useRef } from 'react';
+import {
+    motion,
+    useMotionValue,
+    useMotionValueEvent,
+    useScroll,
+    animate
+} from "framer-motion"
 
 const LatestVehicles = () => {
     const [allCars, setAllCars] = useState([]);
+    const containerRef = useRef(null);
+    
+    // Track horizontal scroll progress within the container
+    const { scrollXProgress } = useScroll({ container: containerRef });
+    
+    // Create gradient mask for scroll edges
+    const maskImage = useScrollOverflowMask(scrollXProgress);
 
     useEffect(() => {
         axios.get(`http://localhost:3000/latestVehicle`)
             .then(data => {
-                console.log('axios data', data.data);
                 setAllCars(data.data);
             })
             .catch(err => console.error(err));
     }, []);
 
     return (
-        <div className="p-6 bg-base-100">
-            <h1 className="text-2xl font-bold mb-6">Latest Vehicles</h1>
+        <div className="p-6 bg-base-100 relative">
+            <h1 className="text-2xl font-bold mb-6 mt-6 ">Latest Vehicles</h1>
             
-            <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={20}
-                slidesPerView={1}
-                navigation
-                // pagination={{ 
-                //     clickable: true,
-                //     dynamicBullets: true 
-                // }}
-                autoplay={{ 
-                    delay: 3000,
-                    disableOnInteraction: false 
-                }}
-                breakpoints={{
-                    // when window width is >= 640px
-                    640: {
-                        slidesPerView: 2,
-                    },
-                    // when window width is >= 768px
-                    768: {
-                        slidesPerView: 3,
-                    },
-                    // when window width is >= 1024px
-                    1024: {
-                        slidesPerView: 4,
-                    },
-                    // when window width is >= 1280px
-                    1280: {
-                        slidesPerView: 5,
-                    },
-                }}
-                className="mySwiper"
+            {/* Scroll progress indicator */}
+            <svg className="w-20 h-20 absolute top-4 right-2 transform -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="30" pathLength="1" className="stroke-base-300 fill-none stroke-[10%]" />
+                <motion.circle
+                    cx="50"
+                    cy="50"
+                    r="30"
+                    className="stroke-primary fill-none stroke-[10%]"
+                    style={{ pathLength: scrollXProgress }}
+                />
+            </svg>
+            
+            {/* Horizontal scroll container */}
+            <motion.div 
+                ref={containerRef}
+                style={{ maskImage }}
+                className="flex gap-6 overflow-x-auto py-4 px-2 scrollbar-thin scrollbar-thumb-primary scrollbar-track-base-200"
             >
-                {allCars.map((car) => (
-                    <SwiperSlide key={car._id}>
-                        <div className="bg-base-200 glass rounded-2xl p-5 w-full shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer relative h-full">
-                            <div className="flex flex-col justify-between h-full">
-                                <div>
-                                    <img
-                                        src={car.coverImage}
-                                        alt={car.vehicleName}
-                                        className="w-full object-contain h-28 mx-auto mb-4"
-                                    />
-                                </div>
-                                <div className="grow">
-                                    <h2 className="text-lg font-semibold mb-2 line-clamp-2">
-                                        {car.vehicleName}
-                                    </h2>
-                                    <p className="">${car.pricePerDay} /day</p>
-                                </div>
+                {allCars.map((car, index) => (
+                    <motion.div
+                        key={car._id}
+                        initial={{ opacity: 0, scale: 0.8, x: 50 }}
+                        whileInView={{ 
+                            opacity: 1, 
+                            scale: 1, 
+                            x: 0,
+                            transition: { 
+                                delay: index * 0.1, 
+                                duration: 0.5,
+                                ease: "easeOut"
+                            }
+                        }}
+                        viewport={{ once: true }}
+                        whileHover={{ 
+                            scale: 1.05,
+                            y: -5,
+                            transition: { duration: 0.2 }
+                        }}
+                        className="bg-base-200 glass rounded-2xl p-5 min-w-[280px] shadow-md hover:shadow-xl cursor-pointer flex-shrink-0"
+                    >
+                        <div className="flex flex-col justify-between h-full">
+                            <div>
+                                <motion.img
+                                    src={car.coverImage}
+                                    alt={car.vehicleName}
+                                    className="w-full object-contain h-28 mx-auto mb-4"
+                                    whileHover={{ scale: 1.1 }}
+                                    transition={{ duration: 0.3 }}
+                                />
+                            </div>
+                            <div className="grow">
+                                <h2 className="text-lg font-semibold mb-2 line-clamp-2">
+                                    {car.vehicleName}
+                                </h2>
+                                <p className="text-primary font-medium">${car.pricePerDay} /day</p>
                             </div>
                         </div>
-                    </SwiperSlide>
+                    </motion.div>
                 ))}
-            </Swiper>
+            </motion.div>
         </div>
     );
 };
+
+// Custom hook for scroll overflow mask (from the official example)
+const left = `0%`
+const right = `100%`
+const leftInset = `20%`
+const rightInset = `80%`
+const transparent = `#0000`
+const opaque = `#000`
+
+const useScrollOverflowMask = (scrollXProgress) => {
+    const maskImage = useMotionValue(
+        `linear-gradient(90deg, ${opaque}, ${opaque} ${left}, ${opaque} ${rightInset}, ${transparent})`
+    )
+
+    useMotionValueEvent(scrollXProgress, "change", (value) => {
+        if (value === 0) {
+            animate(
+                maskImage,
+                `linear-gradient(90deg, ${opaque}, ${opaque} ${left}, ${opaque} ${rightInset}, ${transparent})`
+            )
+        } else if (value === 1) {
+            animate(
+                maskImage,
+                `linear-gradient(90deg, ${transparent}, ${opaque} ${leftInset}, ${opaque} ${right}, ${opaque})`
+            )
+        } else if (
+            scrollXProgress.getPrevious() === 0 ||
+            scrollXProgress.getPrevious() === 1
+        ) {
+            animate(
+                maskImage,
+                `linear-gradient(90deg, ${transparent}, ${opaque} ${leftInset}, ${opaque} ${rightInset}, ${transparent})`
+            )
+        }
+    })
+
+    return maskImage
+}
 
 export default LatestVehicles;
