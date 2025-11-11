@@ -49,19 +49,18 @@ const ViewDetails = () => {
                 coverImage: car.coverImage,
                 category: car.category,
                 bookingDate: formattedDate,
-                bookingDateISO: currentDate.toISOString(), // Store ISO format for easy parsing
+                bookingDateISO: currentDate.toISOString(), 
                 status: 'pending',
-                // Additional booking details you might want to include
                 pickupDate: format(currentDate, 'yyyy-MM-dd'),
-                returnDate: format(new Date(currentDate.setDate(currentDate.getDate() + 1)), 'yyyy-MM-dd'), // Example: next day return
+                returnDate: format(new Date(currentDate.setDate(currentDate.getDate() + 1)), 'yyyy-MM-dd'), 
                 totalAmount: car.pricePerDay,
-                bookingReference: `BK-${Date.now()}` // Unique booking reference
+                bookingReference: `BK-${Date.now()}` 
             };
 
             const response = await axios.post('http://localhost:3000/bookings', bookingData);
             
             if (response.data.insertedId) {
-                // Format success message with date
+                
                 const readableDate = format(parseISO(bookingData.bookingDateISO), 'PPPP pp');
                 alert(`Booking request submitted successfully on ${readableDate}!`);
             }
@@ -73,7 +72,6 @@ const ViewDetails = () => {
         }
     };
 
-    // Format car creation date if it exists
     const formatCarDate = (dateString) => {
         if (!dateString) return 'N/A';
         try {
