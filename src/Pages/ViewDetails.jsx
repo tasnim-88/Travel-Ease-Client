@@ -1,11 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 import Loading from '../Components/Loading';
 import { format, parseISO } from 'date-fns';
 
 const ViewDetails = () => {
+    const { user } = use(AuthContext)
     const [car, setCar] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -38,29 +39,29 @@ const ViewDetails = () => {
         try {
             const currentDate = new Date();
             const formattedDate = format(currentDate, 'yyyy-MM-dd HH:mm:ss');
-            
+
             const bookingData = {
                 carId: id,
                 vehicleName: car.vehicleName,
                 owner: car.owner,
-                userEmail: car.userEmail,
+                userEmail: user.email,
                 pricePerDay: car.pricePerDay,
                 location: car.location,
                 coverImage: car.coverImage,
                 category: car.category,
                 bookingDate: formattedDate,
-                bookingDateISO: currentDate.toISOString(), 
+                bookingDateISO: currentDate.toISOString(),
                 status: 'pending',
                 pickupDate: format(currentDate, 'yyyy-MM-dd'),
-                returnDate: format(new Date(currentDate.setDate(currentDate.getDate() + 1)), 'yyyy-MM-dd'), 
+                returnDate: format(new Date(currentDate.setDate(currentDate.getDate() + 1)), 'yyyy-MM-dd'),
                 totalAmount: car.pricePerDay,
-                bookingReference: `BK-${Date.now()}` 
+                bookingReference: `BK-${Date.now()}`
             };
 
             const response = await axios.post('http://localhost:3000/bookings', bookingData);
-            
+
             if (response.data.insertedId) {
-                
+
                 const readableDate = format(parseISO(bookingData.bookingDateISO), 'PPPP pp');
                 alert(`Booking request submitted successfully on ${readableDate}!`);
             }
@@ -188,7 +189,7 @@ const ViewDetails = () => {
                     </div>
 
                     <div className="flex justify-end">
-                        <button 
+                        <button
                             className="btn btn-primary btn-lg"
                             onClick={handleBookNow}
                             disabled={bookingLoading || availability !== 'Available'}
