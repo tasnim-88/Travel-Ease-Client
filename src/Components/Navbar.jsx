@@ -105,7 +105,6 @@ const Navbar = () => {
                                                         <li><NavLink to={'/myBookings'}>My Bookings</NavLink></li>
                                                         <li><NavLink to={'/addVehicle'}>Add Vehicle</NavLink></li>
                                                         <li><NavLink to={'/myVehicle'}>My Vehicle</NavLink></li>
-                                                        <li><NavLink to={'/updateVehicle'}>Update Vehicle</NavLink></li>
                                                     </>
                                                 }
                                                 <li><Link to={'/signin'} onClick={handleSignOut}>Logout</Link></li>

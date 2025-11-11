@@ -5,11 +5,10 @@ import Loading from '../Components/Loading';
 
 const MyBookings = () => {
     const [bookings, setBookings] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const { user } = use(AuthContext);
-    const userEmail = user?.email; 
+    const { user, loading, setLoading } = use(AuthContext);
+    const userEmail = user?.email;
 
     // console.log('Logged in user:', userEmail);
     // console.log('All bookings:', bookings);
@@ -30,7 +29,7 @@ const MyBookings = () => {
                 setError('Failed to load your bookings');
                 setLoading(false);
             });
-    }, [userEmail]);
+    }, [userEmail, setLoading]);
 
     const handleCancelBooking = (bookingId) => {
         console.log('Cancel booking:', bookingId);

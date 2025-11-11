@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 import Loading from '../Components/Loading';
 import { format, parseISO } from 'date-fns';
+import { toast } from 'react-toastify';
 
 const ViewDetails = () => {
     const { user } = use(AuthContext)
@@ -63,11 +64,11 @@ const ViewDetails = () => {
             if (response.data.insertedId) {
 
                 const readableDate = format(parseISO(bookingData.bookingDateISO), 'PPPP pp');
-                alert(`Booking request submitted successfully on ${readableDate}!`);
+                toast.success(`Booking request submitted successfully on ${readableDate}!`);
             }
         } catch (error) {
             console.error('Error creating booking:', error);
-            alert('Failed to submit booking request. Please try again.');
+            toast.error('Failed to submit booking request. Please try again.');
         } finally {
             setBookingLoading(false);
         }
@@ -78,6 +79,7 @@ const ViewDetails = () => {
         try {
             return format(parseISO(dateString), 'MMM dd, yyyy');
         } catch (error) {
+            console.log(error.code);
             return 'Invalid date';
         }
     };
