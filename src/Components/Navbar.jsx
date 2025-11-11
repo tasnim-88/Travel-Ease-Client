@@ -38,6 +38,14 @@ const Navbar = () => {
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/allVehicles'}>All Vehicles</NavLink></li>
+        {
+            user &&
+            <>
+                <li><NavLink to={'/myBookings'}>My Bookings</NavLink></li>
+                <li><NavLink to={'/addVehicle'}>Add Vehicle</NavLink></li>
+                <li><NavLink to={'/myVehicle'}>My Vehicle</NavLink></li>
+            </>
+        }
 
     </>
     return (
@@ -102,9 +110,7 @@ const Navbar = () => {
                                                                 <span className="badge">New</span>
                                                             </NavLink>
                                                         </li>
-                                                        <li><NavLink to={'/myBookings'}>My Bookings</NavLink></li>
-                                                        <li><NavLink to={'/addVehicle'}>Add Vehicle</NavLink></li>
-                                                        <li><NavLink to={'/myVehicle'}>My Vehicle</NavLink></li>
+
                                                     </>
                                                 }
                                                 <li><Link to={'/signin'} onClick={handleSignOut}>Logout</Link></li>

@@ -47,8 +47,6 @@ const AddVehicle = () => {
             
             if (response.data.insertedId) {
                 toast.success('Vehicle added successfully!');
-                
-                // Reset form
                 form.reset();
             }
         } catch (error) {
@@ -111,8 +109,6 @@ const AddVehicle = () => {
                                 <option value="Sedan">Sedan</option>
                                 <option value="Van">Van</option>
                                 <option value="SUV">SUV</option>
-                                <option value="Hatchback">Hatchback</option>
-                                <option value="Sports Car">Sports Car</option>
                             </select>
                         </div>
 
