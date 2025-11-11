@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 const AllVehicleCard = ({ car }) => {
     // console.log(car);
 
+    const { _id } = car
+
     return (
         <div>
             <div className="bg-base-200 glass rounded-2xl p-5 w-56  shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer relative">
@@ -19,7 +21,7 @@ const AllVehicleCard = ({ car }) => {
                         {car.vehicleName}
                     </h2>
                     <p className="">${car.pricePerDay} /day</p>
-                    <Link to={'/viewDetails'} className='btn mt-2 hover:scale-105'>View Details</Link>
+                    <Link to={`/viewDetails/${_id}`} className='btn mt-2 hover:scale-105'>View Details</Link>
                 </div>
             </div>
         </div>

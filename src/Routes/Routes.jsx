@@ -29,7 +29,7 @@ const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
-                path: '/viewDetails',
+                path: '/viewDetails/:id',
                 element: <PrivateRoute>
                     <ViewDetails></ViewDetails>
                 </PrivateRoute>
