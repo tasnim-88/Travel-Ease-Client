@@ -10,7 +10,7 @@ const AddVehicle = () => {
 
     const handleForm = async (e) => {
         e.preventDefault();
-        
+
         if (!user?.email) {
             toast.error('Please log in to add a vehicle');
             return;
@@ -43,8 +43,12 @@ const AddVehicle = () => {
                 }
             }
 
-            const response = await axios.post('http://localhost:3000/cars', vehicleData);
-            
+            const response = await axios.post('http://localhost:3000/cars', vehicleData, {
+                headers: {
+                    authorization: `Bearer ${user.accessToken}`
+                }
+            });
+
             if (response.data.insertedId) {
                 toast.success('Vehicle added successfully!');
                 form.reset();
@@ -98,7 +102,7 @@ const AddVehicle = () => {
                             <label className="block mb-2">
                                 <span className="label-text">Category</span>
                             </label>
-                            <select 
+                            <select
                                 name='category'
                                 className="select select-bordered w-full"
                                 required
@@ -147,7 +151,7 @@ const AddVehicle = () => {
                             <label className="block mb-2">
                                 <span className="label-text">Availability</span>
                             </label>
-                            <select 
+                            <select
                                 name='status'
                                 className="select select-bordered w-full"
                                 defaultValue="Available"
@@ -179,7 +183,7 @@ const AddVehicle = () => {
                                 type="email"
                                 defaultValue={user?.email || ''}
                                 className="input input-bordered w-full"
-                                
+
                                 readOnly
                             />
                         </div>
@@ -199,7 +203,7 @@ const AddVehicle = () => {
 
                         {/* Submit Button */}
                         <div className="flex justify-end pt-4">
-                            <button 
+                            <button
                                 type="submit"
                                 className="btn btn-primary"
                                 disabled={loading}

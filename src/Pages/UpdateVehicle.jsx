@@ -11,14 +11,18 @@ const UpdateVehicle = () => {
     const { id } = useParams()
 
     console.log(carData);
-    
+
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/updateVehicle/${id}`)
+        axios.get(`http://localhost:3000/updateVehicle/${id}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
             .then(res => {
                 setCarData(res.data)
             })
-    }, [id])
+    }, [user.accessToken, id])
 
     const handleForm = async (e) => {
         e.preventDefault();
@@ -50,9 +54,13 @@ const UpdateVehicle = () => {
                 }
             }
 
-            const response = await axios.put(`http://localhost:3000/cars/${id}`, vehicleData);
+            const response = await axios.put(`http://localhost:3000/cars/${id}`, vehicleData, {
+                headers: {
+                    authorization: `Bearer ${user.accessToken}`
+                }
+            });
             console.log(response);
-            
+
 
             if (response.data.success) {
                 toast.success('Vehicle updated successfully!');

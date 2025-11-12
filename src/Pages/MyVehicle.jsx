@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import axios from 'axios';
 import Loading from '../Components/Loading';
 import { toast } from 'react-toastify';
-import { useSpring } from '@react-spring/web';
+import { useSpring, animated } from '@react-spring/web';
 
 const DeleteModal = ({ isOpen, onClose, onConfirm, vehicleName }) => {
     const animation = useSpring({
@@ -62,7 +62,11 @@ const MyVehicle = () => {
             try {
                 setLoading(true);
 
-                const response = await axios.get(`http://localhost:3000/my-vehicle/${user.email}`);
+                const response = await axios.get(`http://localhost:3000/my-vehicle/${user.email}`, {
+                    headers: {
+                        authorization: `Bearer ${user.accessToken}`
+                    }
+                });
 
                 // const userVehicles = response.data.filter(car => car.userEmail === user.email);
                 setVehicles(response.data);
@@ -91,7 +95,11 @@ const MyVehicle = () => {
         if (!deleteModal.vehicleId) return;
 
         try {
-            const response = await axios.delete(`http://localhost:3000/cars/${deleteModal.vehicleId}`);
+            const response = await axios.delete(`http://localhost:3000/cars/${deleteModal.vehicleId}`, {
+                headers: {
+                    authorization: `Bearer ${user.accessToken}`
+                }
+            });
 
             if (response.data.success) {
                 toast.success('Vehicle deleted successfully!');

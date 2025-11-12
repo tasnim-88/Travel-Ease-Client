@@ -19,7 +19,11 @@ const MyBookings = () => {
             return;
         }
 
-        axios.get(`http://localhost:3000/my-bookings/${userEmail}`)
+        axios.get(`http://localhost:3000/my-bookings/${userEmail}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
             .then(res => {
                 setBookings(res.data);
                 setLoading(false);
@@ -29,11 +33,15 @@ const MyBookings = () => {
                 setError('Failed to load your bookings');
                 setLoading(false);
             });
-    }, [userEmail, setLoading]);
+    }, [user.accessToken, userEmail, setLoading]);
 
     const handleCancelBooking = (bookingId) => {
         console.log('Cancel booking:', bookingId);
-        axios.delete(`http://localhost:3000/bookings/${bookingId}`)
+        axios.delete(`http://localhost:3000/bookings/${bookingId}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
             .then(() => {
                 setBookings(bookings.filter(booking => booking._id !== bookingId));
             })

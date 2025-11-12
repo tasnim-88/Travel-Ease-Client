@@ -21,7 +21,11 @@ const ViewDetails = () => {
             return;
         }
 
-        axios.get(`http://localhost:3000/viewDetails/${id}`)
+        axios.get(`http://localhost:3000/viewDetails/${id}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
             .then(response => {
                 setCar(response.data);
                 setLoading(false);
@@ -31,7 +35,7 @@ const ViewDetails = () => {
                 setError('Failed to load car details');
                 setLoading(false);
             });
-    }, [id]);
+    }, [user.accessToken, id]);
 
     const handleBookNow = async () => {
         if (!car) return;
@@ -59,7 +63,11 @@ const ViewDetails = () => {
                 bookingReference: `BK-${Date.now()}`
             };
 
-            const response = await axios.post('http://localhost:3000/bookings', bookingData);
+            const response = await axios.post('http://localhost:3000/bookings', bookingData, {
+                headers: {
+                    authorization: `Bearer ${user.accessToken}`
+                }
+            });
 
             if (response.data.insertedId) {
 
@@ -204,7 +212,7 @@ const ViewDetails = () => {
                                 </>
                             ) : (
                                 availability === 'Available' ? 'Book Now' : 'Not Available'
-                                
+
                             )}
                         </button>
                     </div>
