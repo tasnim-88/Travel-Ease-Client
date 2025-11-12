@@ -3,6 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 import { toast } from 'react-toastify';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 
 const Signin = () => {
     const { user, signIn, signInWithGoogle } = use(AuthContext)
@@ -10,6 +11,7 @@ const Signin = () => {
     const location = useLocation()
     const from = location.state || '/'
     const [isLoading, setIsLoading] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
 
     useEffect(() => {
         if (user) {
@@ -91,6 +93,11 @@ const Signin = () => {
                 return 'Google sign-in failed. Please try again.'
         }
     }
+    const handleToggleShow = (e) => {
+        e.preventDefault()
+        setShowPassword(!showPassword)
+
+    }
 
     return (
         <div className='min-h-screen flex justify-center items-center bg-base-100 '>
@@ -99,23 +106,26 @@ const Signin = () => {
                     <h1 className='text-center mb-8 text-2xl'>Sign in to your account</h1>
                     <div className='mb-4'>
                         <label className='block mb-2'>Email Address</label>
-                        <input 
-                            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
-                            type="email" 
-                            name="email" 
-                            placeholder='Enter your email' 
-                            required 
+                        <input
+                            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline'
+                            type="email"
+                            name="email"
+                            placeholder='Enter your email'
+                            required
                         />
                     </div>
                     <div className='mb-6'>
                         <label className='block mb-2'>Password</label>
-                        <input
-                            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
-                            type="password" 
-                            name="password" 
-                            placeholder='********' 
-                            required 
-                        />
+                        <div className='relative'>
+                            <input
+                                className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline'
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                placeholder='********'
+                                required
+                            />
+                            <button onClick={handleToggleShow} className=" absolute top-3 right-7 z-10">{showPassword ? <FaRegEyeSlash size={20} /> : <FaRegEye size={20} />}</button>
+                        </div>
                         <div className='mt-4'>
                             <Link>Forgot Password</Link>
                         </div>

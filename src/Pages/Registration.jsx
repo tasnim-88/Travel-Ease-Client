@@ -3,6 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 import { toast } from 'react-toastify';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 
 const Registration = () => {
     const { signUp, signInWithGoogle, updateUser } = use(AuthContext)
@@ -13,6 +14,7 @@ const Registration = () => {
     const [passError, setPassError] = useState([])
     const [isPassValid, setIsPassValid] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
 
     const validPassword = (password) => {
         const errors = []
@@ -58,7 +60,7 @@ const Registration = () => {
                 updateUser(name, image).then(() => {
                     toast.success('Registration successful! Welcome to our platform.')
                     navigate('/')
-                    
+
                 })
                     .catch(error => {
                         console.log(error);
@@ -121,6 +123,12 @@ const Registration = () => {
         }
     }
 
+    const handleToggleShow = (e) => {
+        e.preventDefault()
+        setShowPassword(!showPassword)
+
+    }
+
     return (
         <div className='min-h-screen flex justify-center items-center bg-base-100'>
             <div className='w-full max-w-xl my-10'>
@@ -165,15 +173,18 @@ const Registration = () => {
                     {/* Password */}
                     <div className='mb-6'>
                         <label className='block mb-2'>Password</label>
-                        <input
-                            className={`shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${passError.length > 0 ? 'border-red-500' : isPassValid ? 'border-green-500' : ''
-                                }`}
-                            type="password"
-                            name="password"
-                            placeholder='********'
-                            onChange={handlePasswordChange}
-                            required
-                        />
+                        <div className='relative'>
+                            <input
+                                className={`shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${passError.length > 0 ? 'border-red-500' : isPassValid ? 'border-green-500' : ''
+                                    }`}
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                placeholder='********'
+                                onChange={handlePasswordChange}
+                                required
+                            />
+                            <button onClick={handleToggleShow} className=" absolute top-3 right-7 z-10">{showPassword ? <FaRegEyeSlash size={20} /> : <FaRegEye size={20} />}</button>
+                        </div>
 
                         {/* Password validation errors */}
                         {passError.length > 0 && (
