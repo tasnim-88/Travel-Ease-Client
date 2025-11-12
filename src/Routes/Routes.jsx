@@ -11,6 +11,7 @@ import MyVehicle from "../Pages/MyVehicle";
 import UpdateVehicle from "../Pages/UpdateVehicle";
 import AllVehicles from "../Pages/AllVehicles";
 import ViewDetails from "../Pages/ViewDetails";
+import Error from "../Pages/Error";
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,7 @@ const router = createBrowserRouter([
                     <UpdateVehicle></UpdateVehicle>
                 </PrivateRoute>
             },
+            { path: '/*', Component: Error }
         ]
     }
 ])

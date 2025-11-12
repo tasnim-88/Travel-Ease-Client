@@ -1,28 +1,19 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { use, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { Link, useLocation, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
 import { toast } from 'react-toastify';
 
 const Registration = () => {
-    const { user, signUp, signInWithGoogle } = use(AuthContext)
+    const { signUp, signInWithGoogle, updateUser } = use(AuthContext)
 
     const navigate = useNavigate()
-    const location = useLocation()
-    const from = location.state || '/'
 
     // State for password validation
     const [passError, setPassError] = useState([])
     const [isPassValid, setIsPassValid] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(() => {
-        if (user) {
-            navigate(from, { replace: true })
-        }
-    }, [user, from, navigate])
-
-    // Password validation function
     const validPassword = (password) => {
         const errors = []
 
@@ -48,12 +39,12 @@ const Registration = () => {
 
     const handleRegister = (e) => {
         e.preventDefault()
-        
+
         const name = e.target.name.value
         const email = e.target.email.value
         const image = e.target.image.value
         const password = e.target.password.value
-        
+
         console.log({ name, email, image, password });
 
         // Validate password before proceeding
@@ -62,21 +53,22 @@ const Registration = () => {
             return
         }
 
-        setIsLoading(true)
-
         signUp(email, password)
-            .then((userCredential) => {
-                const user = userCredential.user
-                toast.success('Registration successful! Welcome to our platform.')
-                console.log(user);
-                
-                // Navigate to home page on successful registration
-                navigate('/', { replace: true })
+            .then(() => {
+                updateUser(name, image).then(() => {
+                    toast.success('Registration successful! Welcome to our platform.')
+                    navigate('/')
+                    
+                })
+                    .catch(error => {
+                        console.log(error);
+
+                    })
             })
             .catch(err => {
                 const errorCode = err.code
                 const errorMessage = getErrorMessage(errorCode)
-                
+
                 console.log(errorCode);
                 toast.error(errorMessage)
             })
@@ -107,7 +99,7 @@ const Registration = () => {
         signInWithGoogle()
             .then(result => {
                 toast.success('Successfully signed in with Google!')
-                navigate(from, { replace: true })
+                navigate("/", { replace: true })
             })
             .catch(err => {
                 const errorMessage = getGoogleErrorMessage(err.code)
@@ -134,56 +126,55 @@ const Registration = () => {
             <div className='w-full max-w-xl my-10'>
                 <form onSubmit={handleRegister} className='bg-base-200 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4'>
                     <h1 className='text-center mb-8 text-2xl'>Register an account</h1>
-                    
+
                     {/* Name */}
                     <div className='mb-4'>
                         <label className='block mb-2'>Full Name</label>
-                        <input 
-                            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
-                            type="text" 
-                            name="name" 
-                            placeholder='Enter your Name' 
-                            required 
+                        <input
+                            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline'
+                            type="text"
+                            name="name"
+                            placeholder='Enter your Name'
+                            required
                         />
                     </div>
-                    
+
                     {/* Email */}
                     <div className='mb-4'>
                         <label className='block mb-2'>Email Address</label>
-                        <input 
-                            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
-                            type="email" 
-                            name="email" 
-                            placeholder='Enter your email' 
-                            required 
+                        <input
+                            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline'
+                            type="email"
+                            name="email"
+                            placeholder='Enter your email'
+                            required
                         />
                     </div>
-                    
+
                     {/* Photo URL */}
                     <div className='mb-4'>
                         <label className='block mb-2'>Photo URL</label>
-                        <input 
-                            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' 
-                            type='url' 
-                            name="image" 
-                            placeholder='Enter your image url' 
+                        <input
+                            className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline'
+                            type='url'
+                            name="image"
+                            placeholder='Enter your image url'
                         />
                     </div>
-                    
+
                     {/* Password */}
                     <div className='mb-6'>
                         <label className='block mb-2'>Password</label>
                         <input
-                            className={`shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${
-                                passError.length > 0 ? 'border-red-500' : isPassValid ? 'border-green-500' : ''
-                            }`}
+                            className={`shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${passError.length > 0 ? 'border-red-500' : isPassValid ? 'border-green-500' : ''
+                                }`}
                             type="password"
                             name="password"
                             placeholder='********'
                             onChange={handlePasswordChange}
                             required
                         />
-                        
+
                         {/* Password validation errors */}
                         {passError.length > 0 && (
                             <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded">
@@ -203,7 +194,7 @@ const Registration = () => {
                             </div>
                         )}
                     </div>
-                    
+
                     {/* Register Button - Kept as original */}
                     <button className='btn w-full'>
                         {isLoading ? (
@@ -215,15 +206,15 @@ const Registration = () => {
                             'Register Now'
                         )}
                     </button>
-                    
+
                     <div className='divider'>OR</div>
-                    
+
                     {/* Google Sign In - Kept as original Link */}
                     <Link onClick={handleGoogle} className="btn border-[#e5e5e5] w-full">
                         <FcGoogle size={24} />Continue with Google
                     </Link>
                 </form>
-                
+
                 <p className="text-center text-gray-600 text-sm">
                     Already have an account?{' '}
                     <Link className="text-blue-600 hover:underline" to="/signin">
