@@ -7,15 +7,15 @@ import {
     useScroll,
     animate
 } from "framer-motion"
+import { useNavigate } from 'react-router';
 
 const LatestVehicles = () => {
     const [allCars, setAllCars] = useState([]);
     const containerRef = useRef(null);
-    
-    // Track horizontal scroll progress within the container
+    const navigate = useNavigate()
+
     const { scrollXProgress } = useScroll({ container: containerRef });
-    
-    // Create gradient mask for scroll edges
+
     const maskImage = useScrollOverflowMask(scrollXProgress);
 
     useEffect(() => {
@@ -26,11 +26,14 @@ const LatestVehicles = () => {
             .catch(err => console.error(err));
     }, []);
 
+    const handleLatestCar=(id)=>{
+        navigate(`/viewDetails/${id}`)
+    }
+
     return (
         <div className="p-6 bg-base-100 relative">
             <h1 className="text-2xl font-bold mb-6 mt-6 ">Latest Vehicles</h1>
-            
-            {/* Scroll progress indicator */}
+
             <svg className="w-20 h-20 absolute top-4 right-2 transform -rotate-90" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="30" pathLength="1" className="stroke-base-300 fill-none stroke-[10%]" />
                 <motion.circle
@@ -41,9 +44,8 @@ const LatestVehicles = () => {
                     style={{ pathLength: scrollXProgress }}
                 />
             </svg>
-            
-            {/* Horizontal scroll container */}
-            <motion.div 
+
+            <motion.div
                 ref={containerRef}
                 style={{ maskImage }}
                 className="flex gap-6 overflow-x-auto py-4 px-2 scrollbar-thin scrollbar-thumb-primary scrollbar-track-base-200"
@@ -52,22 +54,23 @@ const LatestVehicles = () => {
                     <motion.div
                         key={car._id}
                         initial={{ opacity: 0, scale: 0.8, x: 50 }}
-                        whileInView={{ 
-                            opacity: 1, 
-                            scale: 1, 
+                        whileInView={{
+                            opacity: 1,
+                            scale: 1,
                             x: 0,
-                            transition: { 
-                                delay: index * 0.1, 
+                            transition: {
+                                delay: index * 0.1,
                                 duration: 0.5,
                                 ease: "easeOut"
                             }
                         }}
                         viewport={{ once: true }}
-                        whileHover={{ 
+                        whileHover={{
                             scale: 1.05,
                             y: -5,
                             transition: { duration: 0.2 }
                         }}
+                        onClick={() => handleLatestCar(car._id)}
                         className="bg-base-200 glass rounded-2xl p-5 min-w-[280px] shadow-md hover:shadow-xl cursor-pointer flex-shrink-0"
                     >
                         <div className="flex flex-col justify-between h-full">
@@ -94,7 +97,7 @@ const LatestVehicles = () => {
     );
 };
 
-// Custom hook for scroll overflow mask (from the official example)
+
 const left = `0%`
 const right = `100%`
 const leftInset = `20%`

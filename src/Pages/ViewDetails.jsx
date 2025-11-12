@@ -65,6 +65,7 @@ const ViewDetails = () => {
 
                 const readableDate = format(parseISO(bookingData.bookingDateISO), 'PPPP pp');
                 toast.success(`Booking request submitted successfully on ${readableDate}!`);
+                setCar(prev => ({ ...prev, availability: 'Booked' }));
             }
         } catch (error) {
             console.error('Error creating booking:', error);
@@ -203,6 +204,7 @@ const ViewDetails = () => {
                                 </>
                             ) : (
                                 availability === 'Available' ? 'Book Now' : 'Not Available'
+                                
                             )}
                         </button>
                     </div>
