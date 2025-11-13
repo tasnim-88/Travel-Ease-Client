@@ -126,7 +126,7 @@ const Navbar = () => {
                                                                 }`
                                                             }>
                                                                 Profile
-                                                                <span className="badge">{user.displayName}</span>
+                                                                <span>{user.displayName}</span>
                                                             </NavLink>
                                                         </li>
 

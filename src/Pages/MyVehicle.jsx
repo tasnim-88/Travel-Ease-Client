@@ -128,7 +128,7 @@ const MyVehicle = () => {
                 <div className="text-center">
                     <p className="text-2xl font-bold mb-4">No vehicles found</p>
                     <p className="text-gray-500 mb-4">You haven't added any vehicles yet.</p>
-                    <Link to="/addVehicle" className="btn btn-primary">
+                    <Link to="/addVehicle" className="inline-flex items-center gap-3 bg-orange-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-orange-700 transition">
                         Add Your First Vehicle
                     </Link>
                 </div>
