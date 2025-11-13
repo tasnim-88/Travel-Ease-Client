@@ -1,16 +1,39 @@
-# React + Vite
+# 🌍 TravelEase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Site:** https://smart-deals-d61e9.web.app/
 
-Currently, two official plugins are available:
+At **TravelEase**, we believe renting or sharing a vehicle should be effortless, transparent, and secure. Our platform empowers individuals and businesses to explore, list, and manage vehicles for rent or travel with confidence. Whether you're a traveler looking for the perfect ride or a vehicle owner aiming to earn extra income, **TravelEase** offers a seamless experience powered by modern web technologies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🚗 **Vehicle Listings & Rentals** – Browse a wide selection of vehicles for rent, complete with details, images, and availability.
+- 💼 **Owner Dashboard** – Vehicle owners can easily list, edit, and manage their cars with real-time updates.
+- ⚡ **Smooth Animations** – Powered by **Framer Motion** and **React Spring** for beautiful transitions and micro-interactions.
+- 🕒 **Date Management** – Integrated **date-fns** for handling bookings, rental durations, and date formatting efficiently.
+- 🎨 **Modern & Responsive UI** – Designed with **Tailwind CSS** and **DaisyUI** for a sleek and mobile-friendly interface.
+- 🔄 **Dynamic Routing & Navigation** – Built with **React Router** for a seamless single-page app experience.
+- ⏳ **Loading Feedback** – Utilizes **React Spinner** for elegant loading indicators during data fetching.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+
+- **React** – Frontend library for building user interfaces  
+- **Tailwind CSS** – Utility-first CSS framework for fast styling  
+- **DaisyUI** – Component library for Tailwind  
+- **Framer Motion** – Animation library for React  
+- **React Spring** – For physics-based animations and transitions  
+- **date-fns** – Modern JavaScript date utility library  
+- **React Router** – For routing and navigation  
+- **React Spinner** – For smooth loading states  
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/tasnim-88/Travel-Ease-Client.git
+
