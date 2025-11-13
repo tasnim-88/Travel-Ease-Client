@@ -80,7 +80,7 @@ const AllVehicles = () => {
             <h1 className='text-3xl text-center mt-2'>All Vehicles</h1>
             
             {/* Filter fields */}
-            <div className='mt-10 flex gap-5 ml-10 items-center'>
+            <div className='mt-10 flex gap-5 px-3 md:px-0 md:ml-10 items-center'>
                 {/* Category Filter */}
                 <select
                     value={filters.category}
