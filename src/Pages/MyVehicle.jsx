@@ -68,7 +68,6 @@ const MyVehicle = () => {
                     }
                 });
 
-                // const userVehicles = response.data.filter(car => car.userEmail === user.email);
                 setVehicles(response.data);
 
             } catch (err) {
@@ -90,7 +89,6 @@ const MyVehicle = () => {
         });
     };
 
-    // Confirm delete action
     const handleConfirmDelete = async () => {
         if (!deleteModal.vehicleId) return;
 
@@ -117,13 +115,13 @@ const MyVehicle = () => {
         setDeleteModal({ isOpen: false, vehicleId: null, vehicleName: '' });
     };
 
-    // Show loading state
+   
     if (loading) {
         return <Loading />;
     }
 
 
-    // Show empty state if no vehicles
+    
     if (vehicles.length === 0) {
         return (
             <div className="min-h-screen flex items-center justify-center">

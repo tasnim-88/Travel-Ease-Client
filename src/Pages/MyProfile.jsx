@@ -27,7 +27,7 @@ const MyProfile = () => {
     return (
         <div>
 
-            <div className="gap-1 px-6 flex flex-1 justify-center py-5">
+            <div className="gap-1 px-6 md:flex flex-1 justify-start py-5">
                 {/* Profile Sidebar */}
                 <div className="layout-content-container flex flex-col w-80">
                     <div className="flex p-4 @container">
