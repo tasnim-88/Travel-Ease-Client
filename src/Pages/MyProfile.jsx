@@ -96,7 +96,7 @@ const MyProfile = () => {
 
                         {/* Save Button */}
                         <div className="flex px-4 py-3">
-                            <button type='submit' className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#1380ec] text-white text-sm font-bold leading-normal tracking-[0.015em]">
+                            <button type='submit' className="inline-flex items-center gap-3 bg-orange-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-orange-700 transition">
                                 Save Changes
                             </button>
                         </div>

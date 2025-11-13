@@ -206,7 +206,7 @@ const AddVehicle = () => {
                         <div className="flex justify-end pt-4">
                             <button
                                 type="submit"
-                                className="btn btn-primary"
+                                className="inline-flex items-center gap-3 bg-orange-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-orange-700 transition"
                                 disabled={loading}
                             >
                                 {loading ? (

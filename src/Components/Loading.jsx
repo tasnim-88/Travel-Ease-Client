@@ -1,10 +1,10 @@
 import React from 'react';
-import { BounceLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 
 const Loading = () => {
     return (
-        <div className='h-screen flex justify-center '>
-            <BounceLoader />
+        <div className='h-screen flex justify-center items-center '>
+            <ClipLoader />
         </div>
     );
 };

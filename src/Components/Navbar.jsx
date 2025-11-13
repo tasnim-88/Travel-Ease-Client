@@ -35,14 +35,29 @@ const Navbar = () => {
     }
 
     const links = <>
-        <li><NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/allVehicles'}>All Vehicles</NavLink></li>
+        <li><NavLink to={'/'} className={({ isActive }) =>
+            `ml-3 px-3 py-2 rounded-md font-semibold transition-colors duration-200 ${isActive ? "text-white bg-orange-500" : " hover:text-orange-500"
+            }`
+        }>Home</NavLink></li>
+        <li><NavLink to={'/allVehicles'} className={({ isActive }) =>
+            `ml-3 px-3 py-2 rounded-md font-semibold transition-colors duration-200 ${isActive ? "text-white bg-orange-500" : " hover:text-orange-500"
+            }`
+        }>All Vehicles</NavLink></li>
         {
             user &&
             <>
-                <li><NavLink to={'/myBookings'}>My Bookings</NavLink></li>
-                <li><NavLink to={'/addVehicle'}>Add Vehicle</NavLink></li>
-                <li><NavLink to={'/myVehicle'}>My Vehicle</NavLink></li>
+                <li><NavLink to={'/myBookings'} className={({ isActive }) =>
+                    `ml-3 px-3 py-2 rounded-md font-semibold transition-colors duration-200 ${isActive ? "text-white bg-orange-500" : " hover:text-orange-500"
+                    }`
+                }>My Bookings</NavLink></li>
+                <li><NavLink to={'/addVehicle'} className={({ isActive }) =>
+                    `ml-3 px-3 py-2 rounded-md font-semibold transition-colors duration-200 ${isActive ? "text-white bg-orange-500" : " hover:text-orange-500"
+                    }`
+                }>Add Vehicle</NavLink></li>
+                <li><NavLink to={'/myVehicle'} className={({ isActive }) =>
+                    `ml-3 px-3 py-2 rounded-md font-semibold transition-colors duration-200 ${isActive ? "text-white bg-orange-500" : " hover:text-orange-500"
+                    }`
+                }>My Vehicle</NavLink></li>
             </>
         }
 
@@ -106,20 +121,23 @@ const Navbar = () => {
                                                     user &&
                                                     <>
                                                         <li>
-                                                            <NavLink to={'/myprofile'} className="justify-between">
+                                                            <NavLink to={'/myprofile'} className={({ isActive }) =>
+                                                                ` px-3 py-2 rounded-md font-semibold transition-colors duration-200 ${isActive ? "text-white bg-orange-500" : " hover:text-orange-500"
+                                                                }`
+                                                            }>
                                                                 Profile
-                                                                <span className="badge">New</span>
+                                                                <span className="badge">{user.displayName}</span>
                                                             </NavLink>
                                                         </li>
 
                                                     </>
                                                 }
-                                                <li><Link to={'/signin'} onClick={handleSignOut}>Logout</Link></li>
+                                                <li><Link to={'/signin'} className='hover:text-orange-500' onClick={handleSignOut}>Logout</Link></li>
                                             </ul>
                                         </div>
                                     ) :
                                         <div className="">
-                                            <Link to={'/signin'} className="btn">Login/Register</Link>
+                                            <Link to={'/signin'} className="inline-flex items-center gap-3 bg-orange-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-orange-700 transition">Login/Register</Link>
                                         </div>
                                 }
                             </div>

@@ -181,7 +181,7 @@ const AllVehicles = () => {
                                     <p className="text-lg text-gray-500 mb-4">No vehicles found matching your filters.</p>
                                     <button
                                         onClick={clearFilters}
-                                        className="btn btn-primary"
+                                        className="inline-flex items-center gap-3 bg-orange-600 text-white px-5 py-2 rounded-full font-semibold shadow hover:bg-orange-700 transition"
                                     >
                                         Show All Vehicles
                                     </button>
