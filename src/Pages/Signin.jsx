@@ -12,6 +12,7 @@ const Signin = () => {
     const from = location.state || '/'
     const [isLoading, setIsLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
+    const [email, setEmail] = useState("")
 
     useEffect(() => {
         if (user) {
@@ -99,6 +100,10 @@ const Signin = () => {
 
     }
 
+    const handleForgotPassword = () => {
+        navigate('/forgotPassword', { state: { email } })
+    }
+
     return (
         <div className='min-h-screen flex justify-center items-center bg-base-100 '>
             <div className='w-full max-w-xl my-10'>
@@ -107,6 +112,7 @@ const Signin = () => {
                     <div className='mb-4'>
                         <label className='block mb-2'>Email Address</label>
                         <input
+                            onChange={(e) => setEmail(e.target.value)}
                             className='shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline'
                             type="email"
                             name="email"
@@ -126,9 +132,10 @@ const Signin = () => {
                             />
                             <button onClick={handleToggleShow} className=" absolute top-3 right-7 z-10">{showPassword ? <FaRegEyeSlash size={20} /> : <FaRegEye size={20} />}</button>
                         </div>
-                        <div className='mt-4'>
+                        {/* <div className='mt-4'>
                             <Link>Forgot Password</Link>
-                        </div>
+                        </div> */}
+                        <div onClick={handleForgotPassword} className='mt-2'><a className="link link-hover font-semibold">Forgot password?</a></div>
                     </div>
                     <button className='btn w-full'>
                         {isLoading ? (

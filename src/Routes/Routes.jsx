@@ -12,6 +12,7 @@ import UpdateVehicle from "../Pages/UpdateVehicle";
 import AllVehicles from "../Pages/AllVehicles";
 import ViewDetails from "../Pages/ViewDetails";
 import Error from "../Pages/Error";
+import ForgetPassword from "../Pages/ForgetPassword";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
             { path: '/signin', Component: Signin },
             { path: '/registration', Component: Registration },
             { path: '/allVehicles', Component: AllVehicles },
+            { path: '/forgotPassword', Component: ForgetPassword },
             {
                 path: '/myprofile',
                 element: <PrivateRoute>
