@@ -19,7 +19,7 @@ const MyBookings = () => {
             return;
         }
 
-        axios.get(`http://localhost:3000/my-bookings/${userEmail}`, {
+        axios.get(`https://travel-ease-server-psi.vercel.app/my-bookings/${userEmail}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }
@@ -37,7 +37,7 @@ const MyBookings = () => {
 
     const handleCancelBooking = (bookingId) => {
         console.log('Cancel booking:', bookingId);
-        axios.delete(`http://localhost:3000/bookings/${bookingId}`, {
+        axios.delete(`https://travel-ease-server-psi.vercel.app/bookings/${bookingId}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }

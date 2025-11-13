@@ -21,7 +21,7 @@ const ViewDetails = () => {
             return;
         }
 
-        axios.get(`http://localhost:3000/viewDetails/${id}`, {
+        axios.get(`https://travel-ease-server-psi.vercel.app/viewDetails/${id}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }
@@ -63,7 +63,7 @@ const ViewDetails = () => {
                 bookingReference: `BK-${Date.now()}`
             };
 
-            const response = await axios.post('http://localhost:3000/bookings', bookingData, {
+            const response = await axios.post('https://travel-ease-server-psi.vercel.app/bookings', bookingData, {
                 headers: {
                     authorization: `Bearer ${user.accessToken}`
                 }

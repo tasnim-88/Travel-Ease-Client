@@ -43,7 +43,7 @@ const AddVehicle = () => {
                 }
             }
 
-            const response = await axios.post('http://localhost:3000/cars', vehicleData, {
+            const response = await axios.post('https://travel-ease-server-psi.vercel.app/cars', vehicleData, {
                 headers: {
                     authorization: `Bearer ${user.accessToken}`
                 }

@@ -15,7 +15,7 @@ const AllVehicles = () => {
     })
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/cars`)
+        axios.get(`https://travel-ease-server-psi.vercel.app/cars`)
             .then(data => {
                 setCars(data.data)
                 setFilteredCars(data.data) // Initialize filtered cars

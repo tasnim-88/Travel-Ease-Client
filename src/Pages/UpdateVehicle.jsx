@@ -14,7 +14,7 @@ const UpdateVehicle = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/updateVehicle/${id}`, {
+        axios.get(`https://travel-ease-server-psi.vercel.app/updateVehicle/${id}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }
@@ -54,7 +54,7 @@ const UpdateVehicle = () => {
                 }
             }
 
-            const response = await axios.put(`http://localhost:3000/cars/${id}`, vehicleData, {
+            const response = await axios.put(`https://travel-ease-server-psi.vercel.app/cars/${id}`, vehicleData, {
                 headers: {
                     authorization: `Bearer ${user.accessToken}`
                 }

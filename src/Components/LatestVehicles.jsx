@@ -19,7 +19,7 @@ const LatestVehicles = () => {
     const maskImage = useScrollOverflowMask(scrollXProgress);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/latestVehicle`)
+        axios.get(`https://travel-ease-server-psi.vercel.app/latestVehicle`)
             .then(data => {
                 setAllCars(data.data);
             })

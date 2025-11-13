@@ -62,7 +62,7 @@ const MyVehicle = () => {
             try {
                 setLoading(true);
 
-                const response = await axios.get(`http://localhost:3000/my-vehicle/${user.email}`, {
+                const response = await axios.get(`https://travel-ease-server-psi.vercel.app/my-vehicle/${user.email}`, {
                     headers: {
                         authorization: `Bearer ${user.accessToken}`
                     }
@@ -95,7 +95,7 @@ const MyVehicle = () => {
         if (!deleteModal.vehicleId) return;
 
         try {
-            const response = await axios.delete(`http://localhost:3000/cars/${deleteModal.vehicleId}`, {
+            const response = await axios.delete(`https://travel-ease-server-psi.vercel.app/cars/${deleteModal.vehicleId}`, {
                 headers: {
                     authorization: `Bearer ${user.accessToken}`
                 }
