@@ -8,6 +8,7 @@ const AllVehicleCard = ({ car }) => {
 
     return (
         <div>
+            
             <div className="bg-base-200 glass rounded-2xl p-5 w-56  shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer relative">
                 <div className="flex flex-col justify-between h-full">
                     <div>

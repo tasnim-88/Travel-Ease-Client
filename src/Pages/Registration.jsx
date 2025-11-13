@@ -47,7 +47,7 @@ const Registration = () => {
         const image = e.target.image.value
         const password = e.target.password.value
 
-        console.log({ name, email, image, password });
+        // console.log({ name, email, image, password });
 
         // Validate password before proceeding
         if (!validPassword(password)) {
@@ -131,6 +131,7 @@ const Registration = () => {
 
     return (
         <div className='min-h-screen flex justify-center items-center bg-base-100'>
+            <title>Registration</title>
             <div className='w-full max-w-xl my-10'>
                 <form onSubmit={handleRegister} className='bg-base-200 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4'>
                     <h1 className='text-center mb-8 text-2xl'>Register an account</h1>

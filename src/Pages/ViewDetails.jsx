@@ -121,6 +121,7 @@ const ViewDetails = () => {
 
     return (
         <div>
+            <title>Car Details</title>
             <div className="min-h-screen bg-base-100 flex justify-center p-6">
                 <div className="w-full max-w-4xl bg-base-200 shadow-xl rounded-2xl p-6">
                     <img

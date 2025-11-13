@@ -115,13 +115,13 @@ const MyVehicle = () => {
         setDeleteModal({ isOpen: false, vehicleId: null, vehicleName: '' });
     };
 
-   
+
     if (loading) {
         return <Loading />;
     }
 
 
-    
+
     if (vehicles.length === 0) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -146,6 +146,7 @@ const MyVehicle = () => {
             />
 
             <div className='container mx-auto px-4'>
+                <title>My Vehicles</title>
                 <h1 className='text-3xl font-bold text-center mb-8'>My Vehicles</h1>
 
                 <div className="overflow-x-auto bg-base-200 rounded-lg shadow-lg">

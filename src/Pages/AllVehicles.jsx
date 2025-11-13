@@ -76,6 +76,7 @@ const AllVehicles = () => {
 
     return (
         <div className=''>
+            <title>All Cars</title>
             <h1 className='text-3xl text-center mt-2'>All Vehicles</h1>
             
             {/* Filter fields */}

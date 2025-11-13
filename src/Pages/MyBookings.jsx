@@ -36,7 +36,7 @@ const MyBookings = () => {
     }, [user.accessToken, userEmail, setLoading]);
 
     const handleCancelBooking = (bookingId) => {
-        console.log('Cancel booking:', bookingId);
+        // console.log('Cancel booking:', bookingId);
         axios.delete(`https://travel-ease-server-psi.vercel.app/bookings/${bookingId}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
@@ -86,6 +86,7 @@ const MyBookings = () => {
 
     return (
         <div>
+            <title>My Bookings</title>
             <div className="px-10 md:px-40 flex flex-1 justify-center py-5">
                 <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
                     <div className="flex flex-wrap justify-between gap-3 p-4">

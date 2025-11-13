@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 const Error = () => {
     return (
         <div>
+            <title>404 - Page Not Found</title>
             <div className="min-h-screen flex flex-col items-center justify-center  px-4 text-center">
                 {/* Image */}
                 <img

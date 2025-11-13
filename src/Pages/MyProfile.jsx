@@ -26,6 +26,7 @@ const MyProfile = () => {
 
     return (
         <div>
+            <title>My Profile</title>
 
             <div className="gap-1 px-6 md:flex flex-1 justify-start py-5">
                 {/* Profile Sidebar */}

@@ -10,7 +10,7 @@ const UpdateVehicle = () => {
     const [carData, setCarData] = useState([])
     const { id } = useParams()
 
-    console.log(carData);
+    // console.log(carData);
 
 
     useEffect(() => {
@@ -59,7 +59,7 @@ const UpdateVehicle = () => {
                     authorization: `Bearer ${user.accessToken}`
                 }
             });
-            console.log(response);
+            // console.log(response);
 
 
             if (response.data.success) {
@@ -76,6 +76,7 @@ const UpdateVehicle = () => {
 
     return (
         <div>
+            <title>Vehicle Update</title>
             <div className="min-h-screen bg-base-100 p-10 flex justify-center">
                 <div className="w-full max-w-3xl bg-base-200 shadow-xl rounded-2xl p-8">
                     <h1 className="text-3xl font-bold mb-8">Update Vehicle</h1>

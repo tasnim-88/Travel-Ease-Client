@@ -25,7 +25,7 @@ const Signin = () => {
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
-        console.log({ email, password });
+        // console.log({ email, password });
 
         setIsLoading(true)
 
@@ -34,7 +34,7 @@ const Signin = () => {
                 const user = userCredential.user
                 toast.success('Successfully signed in! Welcome back.')
                 navigate(from, { replace: true })
-                console.log(user);
+                // console.log(user);
             })
             .catch(err => {
                 const errorCode = err.code
@@ -106,6 +106,7 @@ const Signin = () => {
 
     return (
         <div className='min-h-screen flex justify-center items-center bg-base-100 '>
+            <title>Sign in</title>
             <div className='w-full max-w-xl my-10'>
                 <form onSubmit={handleSignIn} className='bg-base-200 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4'>
                     <h1 className='text-center mb-8 text-2xl'>Sign in to your account</h1>

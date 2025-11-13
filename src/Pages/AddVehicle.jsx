@@ -63,6 +63,7 @@ const AddVehicle = () => {
 
     return (
         <div>
+            <title>Add Vehicle</title>
             <div className="min-h-screen bg-base-100 p-10 flex justify-center">
                 <div className="w-full max-w-3xl bg-base-200 shadow-xl rounded-2xl p-8">
                     <h1 className="text-3xl font-bold mb-8">Add Your Vehicle</h1>
