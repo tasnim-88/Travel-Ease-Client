@@ -36,4 +36,13 @@ At **TravelEase**, we believe renting or sharing a vehicle should be effortless,
 ### 1️⃣ Clone the repository
 ```bash
 git clone https://github.com/tasnim-88/Travel-Ease-Client.git
-
+cd travelease
+```
+2️⃣ Install dependencies
+```
+npm install
+```
+3️⃣ Start the development server
+```
+npm run dev
+```
